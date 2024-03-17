@@ -1,8 +1,17 @@
 import telebot
 from telebot import types
+import yaml
+
+with open('conf.yaml', "r") as yamlfile:
+    config = yaml.load(yamlfile, Loader=yaml.FullLoader)
+    print("Read config successful")
+
+# Telegram
+BOT_TOKEN = config['telegram']['BOT_TOKEN']
+ADMIN_ID = config['telegram']['ADMIN_ID']
 
 # TODO поставить токен бота
-bot = telebot.TeleBot('ТОКЕН')
+bot = telebot.TeleBot(BOT_TOKEN)
 waiting_for_text = {}
 waiting_for_question = {}
 waiting_for_mark = {}
@@ -59,7 +68,7 @@ def yes(message):
     markup.row(btn2, btn3)
     bot.send_message(message.chat.id, "Cпасибо за отзыв.", reply_markup=markup)
     # TODO вставить свой ID
-    bot.send_message( ? , f'Новый отзыв\nИмя: {name} \nID: {id} \nUsername: @{username}\nОтзыв: {copied_message}')
+    bot.send_message( ADMIN_ID , f'Новый отзыв\nИмя: {name} \nID: {id} \nUsername: @{username}\nОтзыв: {copied_message}')
 
 
 @bot.message_handler(func=lambda message: message.text in ['Нет'], content_types=['text'])
@@ -125,7 +134,7 @@ def yes_2(message):
     markup.row(btn2, btn3)
     bot.send_message(message.chat.id, "В скором времени разработчик Вам ответит.", reply_markup=markup)
     # TODO вставить свой ID
-    bot.send_message( ? , f'Новый вопрос\nИмя: {name_question} \nID: {id_question} \nUsername: @{username_question}\nОтзыв: {copied_question}')
+    bot.send_message( ADMIN_ID , f'Новый вопрос\nИмя: {name_question} \nID: {id_question} \nUsername: @{username_question}\nОтзыв: {copied_question}')
 
 
 @bot.message_handler(func=lambda message: message.text in ['Нет, не хочу'], content_types=['text'])
@@ -219,7 +228,7 @@ def rasskaz_no(message):
     markup.row(btn2, btn3)
     bot.send_message(message.chat.id, 'Хорошо, Вы будете направлены в главное меню.', reply_markup=markup)
     # TODO вставить свой ID
-    bot.send_message(?,f'Новая оценка\nИмя: {name_no} \nID: {id_no} \nUsername: @{username_no}\nОценка: {copied_mark}\nОтзыв: отсутствует')
+    bot.send_message(ADMIN_ID, f'Новая оценка\nИмя: {name_no} \nID: {id_no} \nUsername: @{username_no}\nОценка: {copied_mark}\nОтзыв: отсутствует')
 
 
 @bot.message_handler(func=lambda message: message.text in ['Рассказать'], content_types=['text'])
@@ -258,7 +267,7 @@ def yes_mark(message):
     markup.row(btn2, btn3)
     bot.send_message(message.chat.id, "Cпасибо за отзыв.", reply_markup=markup)
     # TODO вставить свой ID
-    bot.send_message( ?, f'Новая оценка\nИмя: {name_mark} \nID: {id_mark} \nUsername: @{username_mark}\nОценка: {copied_mark}\nОтзыв: {copied_message_1}')
+    bot.send_message( ADMIN_ID, f'Новая оценка\nИмя: {name_mark} \nID: {id_mark} \nUsername: @{username_mark}\nОценка: {copied_mark}\nОтзыв: {copied_message_1}')
 
 
 @bot.message_handler(func=lambda message: message.text in ['Не уверен'], content_types=['text'])
