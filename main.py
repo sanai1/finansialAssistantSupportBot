@@ -26,7 +26,8 @@ def start(message):
     btn2 = types.KeyboardButton('Написать отзыв')
     btn3 = types.KeyboardButton('Оценить')
     markup.row(btn2, btn3)
-    bot.send_message(message.chat.id, f'Здравствуйте, <b>{message.from_user.first_name}!</b> Дальше решим, что писать.', parse_mode='html', reply_markup=markup)
+    bot.send_message(message.chat.id, f'Здравствуйте, <b>{message.from_user.first_name}!</b> \nДанный бот поможет держать обратную связь с разработчиками.\n'
+                                      f'\nНиже можете скачать последнюю версию приложения.', parse_mode='html', reply_markup=markup)
     file = open('base.apk', 'rb')
     bot.send_document(message.chat.id, file)
 
