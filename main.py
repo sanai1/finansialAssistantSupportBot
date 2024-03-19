@@ -28,7 +28,7 @@ def start(message):
     markup.row(btn2, btn3)
     bot.send_message(message.chat.id, f'Здравствуйте, <b>{message.from_user.first_name}!</b> \nДанный бот поможет держать обратную связь с разработчиками.\n'
                                       f'\nНиже можете скачать последнюю версию приложения.', parse_mode='html', reply_markup=markup)
-    file = open('финансовый ассистент.apk', 'rb')
+    file = open('fin_assistant.apk', 'rb')
     bot.send_document(message.chat.id, file)
 
 
