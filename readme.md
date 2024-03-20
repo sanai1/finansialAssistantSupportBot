@@ -6,3 +6,6 @@ pip install pyyaml
 # Virtual env
 https://docs.python.org/3/library/venv.html
 python3.10 -m venv p_3_10
+
+# Start background
+nohup python main.py </dev/null &>/dev/null &
